@@ -1,13 +1,13 @@
-Service: Boutique Hotel Booking
+Service: Real Estate Agent/Consultant
 Audience Profile/Demograph:
-- Mid to upper-class travelers, couples, digital nomads, small families
-- Age 25–60, value experience and ambiance
-- Seek relaxation, emotional escape, and “feeling taken care of”
-- Tech-savvy but appreciate personal touch
+- Middle-aged professionals, growing families, first-time homebuyers
+- Age 30–65, upper-middle class
+- Want trust, clarity, and professional guidance
+- Looking for a dream home or profitable investment
 
 Fears (simplified):
-- Booking regret / money wasted
-- Outdated facilities
-- Poor service or hidden fees
-- Difficulty reaching staff
-- Discomfort or lack of privacy
+- Making a bad deal
+- Pushy, untrustworthy agents
+- Losing dream home to competition
+- Hidden fees or legal complications
+- Buying a home that needs costly repairs
