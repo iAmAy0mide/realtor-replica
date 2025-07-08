@@ -17,7 +17,7 @@ export default function StoryFunnel({
   return (
     <section className="py-20 px-6 bg-surface border-t border-border text-center">
       <motion.h2
-        className="text-3xl font-heading text-base mb-6"
+        className="text-[2rem] font-heading text-base mb-6"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

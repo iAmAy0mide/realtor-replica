@@ -7,6 +7,24 @@
   font-style: normal;
 }
 
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
 @theme {
   --color-primary: #2563EB;           /* Strong Blue */
   --color-primary-hover: #1D4ED8;     /* Deeper Blue */

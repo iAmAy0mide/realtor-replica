@@ -32,7 +32,7 @@ export default function AgentsPage() {
   return (
     <main className="bg-background px-6 py-20">
       <div className="max-w-6xl mx-auto text-center">
-        <h1 className="text-3xl font-heading text-base mb-12">Meet Our Agents</h1>
+        <h1 className="text-[2rem] font-heading text-base mb-12">Meet Our Agents</h1>
         <div className="grid md:grid-cols-3 gap-8 text-left">
           {agents.map((agent, i) => (
             <div key={i} className="bg-surface border border-border rounded-xl overflow-hidden shadow-sm">

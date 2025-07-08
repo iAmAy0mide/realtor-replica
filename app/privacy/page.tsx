@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <main className="bg-background px-6 py-20 text-left max-w-3xl mx-auto">
-      <h1 className="text-3xl font-heading text-base mb-6">Privacy Policy</h1>
+      <h1 className="text-[2rem] font-heading text-base mb-6">Privacy Policy</h1>
       <p className="text-muted mb-4">
         At LuxHomes, we respect your privacy and are committed to protecting your personal information.
       </p>

@@ -13,7 +13,7 @@ export default function AboutPage() {
     <main className="bg-background px-6 py-20 text-center">
       <div className="max-w-4xl mx-auto">
         <motion.h1
-          className="text-3xl font-heading text-base mb-4"
+          className="text-[2rem] font-heading text-base mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

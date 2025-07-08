@@ -25,7 +25,7 @@ export default function Testimonials() {
     <section className="bg-surface py-20 px-6">
       <div className="max-w-5xl mx-auto text-center">
         <motion.h2
-          className="text-3xl font-heading mb-10 text-base"
+          className="text-[2rem] font-heading mb-10 text-base"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}

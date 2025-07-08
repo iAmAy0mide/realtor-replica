@@ -23,7 +23,7 @@ export default function ContactPage() {
       <div className="max-w-3xl w-full">
         {!submitted ? (
           <>
-            <h1 className="text-3xl font-heading text-base mb-8 text-center">Let’s Talk</h1>
+            <h1 className="text-[2rem] font-heading text-base mb-8 text-center">Let&apos;s Talk</h1>
 
             <form onSubmit={handleSubmit} className="space-y-6 text-left">
               <div>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function TermsOfServicePage() {
   return (
     <main className="bg-background px-6 py-20 text-left max-w-3xl mx-auto">
-      <h1 className="text-3xl font-heading text-base mb-6">Terms of Service</h1>
+      <h1 className="text-[2rem] font-heading text-base mb-6">Terms of Service</h1>
       <p className="text-muted mb-4">
         These terms govern your use of the LuxHomes website and services.
       </p>

@@ -122,7 +122,7 @@ export async function generateMetadata({
 
   if (!listing) return notFound();
 
-  const fullUrl = `https://www.luxhomes.com/listings/${slug}`;
+  const fullUrl = `https://luxhomes.vercel.app/listings/${slug}`;
   const title = `${listing.title} | LuxHomes`;
   const description = listing.description;
 
@@ -136,7 +136,7 @@ export async function generateMetadata({
       siteName: "LuxHomes",
       images: [
         {
-          url: `https://www.luxhomes.com${listing.image}`,
+          url: `https://luxhomes.vercel.app/${listing.image}`,
           width: 1200,
           height: 630,
           alt: listing.title,
@@ -148,7 +148,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [`https://www.luxhomes.com${listing.image}`],
+      images: [`https://luxhomes.vercel.app/${listing.image}`],
     },
   };
 }
@@ -169,7 +169,7 @@ export default async function ListingDetailPage({ params }: { params: { slug: st
       addressLocality: listing.location,
       addressCountry: "US",
     },
-    image: `https://www.luxhomes.com${listing.image}`,
+    image: `https://luxhomes.vercel.app/${listing.image}`,
     numberOfRooms: listing.bedrooms,
     numberOfBathroomsTotal: listing.bathrooms,
     floorSize: {
@@ -182,7 +182,7 @@ export default async function ListingDetailPage({ params }: { params: { slug: st
       value: listing.price,
       currency: "USD",
     },
-    url: `https://www.luxhomes.com/listings/${slug}`,
+    url: `https://luxhomes.vercel.app/listings/${slug}`,
   };
 
   return <ListingDetailPageContent listing={listing} structuredData={structuredData} />;

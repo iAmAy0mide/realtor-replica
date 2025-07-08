@@ -21,7 +21,7 @@ export default function FeatureHighlight() {
   return (
     <section className="bg-surface py-20 px-6">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl font-heading mb-10 text-base">Why Choose Us?</h2>
+        <h2 className="text-[2rem] font-heading mb-10 text-base">Why Choose Us?</h2>
         <div className="grid md:grid-cols-3 gap-8 text-left">
           {features.map((item, i) => (
             <motion.div

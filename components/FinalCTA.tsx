@@ -7,13 +7,13 @@ export default function FinalCTA() {
   return (
     <section className="py-20 px-6 bg-surface border-t border-border text-center">
       <motion.h2
-        className="text-3xl font-heading text-base mb-4"
+        className="text-[2rem] font-heading text-base mb-4"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        Let’s Find Your Future Address
+        Let&apos;s Find Your Future Address
       </motion.h2>
       <motion.p
         className="text-muted text-lg max-w-xl mx-auto mb-6"

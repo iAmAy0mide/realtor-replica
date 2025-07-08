@@ -5,9 +5,9 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-background px-6 py-28 text-center">
+    <section className="px-6 py-28 text-center bg-gradient-to-br from-background via-slate-50 to-slate-200">
       <motion.h1
-        className="text-5xl font-heading text-base mb-4"
+        className="text-[2.2rem] md:text-[4rem] font-heading text-base mb-4"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -15,7 +15,7 @@ export default function Hero() {
         Find Your Next <span className="text-primary">Luxury Home</span>
       </motion.h1>
       <motion.p
-        className="text-muted max-w-xl mx-auto mb-6 text-lg"
+        className="text-muted max-w-xl mx-auto mb-6 text-[1.1rem] md:text-[1.5rem]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6 }}

@@ -6,17 +6,17 @@ const listings = [
   {
     title: "Skyline Penthouse",
     location: "Downtown LA",
-    image: "/placeholder-penthouse.jpg",
+    image: "/images/skyline-penthouse.jpg",
   },
   {
     title: "Modern Suburban Estate",
     location: "Palo Alto",
-    image: "/placeholder-suburban.jpg",
+    image: "/images/placeholder-suburban.jpg",
   },
   {
     title: "Coastal Glass Villa",
     location: "Malibu Beach",
-    image: "/placeholder-villa.jpg",
+    image: "/images/coastal-glass-villa.jpg",
   },
 ];
 
@@ -24,7 +24,7 @@ export default function PremiumListingsPreview() {
   return (
     <section className="py-20 px-6 bg-background">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-heading text-base mb-12">
+        <h2 className="text-[2rem] font-heading text-base mb-12">
           Featured Luxury Listings
         </h2>
 
