@@ -39,7 +39,12 @@ export default function PremiumListingsPreview() {
               viewport={{ once: true }}
             >
               <div className="h-48 bg-muted/10 flex items-center justify-center text-muted text-sm">
-                <span>{item.image}</span> {/* Replace with real image */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="object-cover w-full h-full"
+                  loading="lazy"
+                />
               </div>
               <div className="p-4 text-left">
                 <h3 className="text-lg font-semibold text-base">
