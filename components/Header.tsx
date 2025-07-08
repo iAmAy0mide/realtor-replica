@@ -43,7 +43,7 @@ export default function Header() {
           <Link href="/about" className="hover:text-base transition">About</Link>
           <Link href="/contact" className="hover:text-base transition">Contact</Link>
           <Link
-            href="/book"
+            href="/booking"
             className="ml-4 bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-hover transition"
           >
             Book a Tour
@@ -76,7 +76,7 @@ export default function Header() {
             </Link>
           </div>
           <Link
-            href="/book"
+            href="/booking"
             className="inline-block w-full text-center bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-hover transition text-[1.1rem]"
             onClick={() => setIsOpen(false)}
           >
