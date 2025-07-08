@@ -185,5 +185,5 @@ export default async function ListingDetailPage({ params }: { params: { slug: st
     url: `https://www.luxhomes.com/listings/${slug}`,
   };
 
-  return <ListingDetailPageContent listing={listing} structuredData={structuredData} />; // Assuming you have a component to render the listing details
+  return <ListingDetailPageContent listing={listing} structuredData={structuredData} />;
 }
