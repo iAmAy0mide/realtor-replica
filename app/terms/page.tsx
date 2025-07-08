@@ -1,4 +1,9 @@
-"use client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | LuxHomes",
+  description: "Review the terms and conditions that govern your use of the LuxHomes website, services, and content.",
+};
 
 export default function TermsOfServicePage() {
   return (

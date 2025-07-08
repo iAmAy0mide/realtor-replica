@@ -1,4 +1,11 @@
 "use client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Meet Our Agents | LuxHomes",
+  description: "Get to know our team of luxury real estate professionals who bring expertise, trust, and excellence to every transaction.",
+};
+
 
 const agents = [
   {

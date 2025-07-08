@@ -1,7 +1,8 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { motion } from "framer-motion";
+import { Metadata } from "next";
 
 const data = {
     "skyline-penthouse": {
@@ -110,14 +111,86 @@ const data = {
     },
 };
 
-export default function ListingDetailPage() {
-  const { slug } = useParams();
-  const listing = data[slug as keyof typeof data];
+type ListingKey = keyof typeof data;
 
-  if (!listing) return <div className="p-10 text-muted">Listing not found.</div>;
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const listing = data[params.slug as ListingKey];
+
+  if (!listing) return notFound();
+
+  const fullUrl = `https://www.luxhomes.com/listings/${params.slug}`;
+  const title = `${listing.title} | LuxHomes`;
+  const description = listing.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: fullUrl,
+      siteName: "LuxHomes",
+      images: [
+        {
+          url: `https://www.luxhomes.com${listing.image}`,
+          width: 1200,
+          height: 630,
+          alt: listing.title,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`https://www.luxhomes.com${listing.image}`],
+    },
+  };
+}
+
+export default function ListingDetailPage({ params }: { params: { slug: string } }) {
+  const listing = data[params.slug as ListingKey];
+  if (!listing) return notFound();
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SingleFamilyResidence",
+    name: listing.title,
+    description: listing.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: listing.location,
+      addressCountry: "US",
+    },
+    image: `https://www.luxhomes.com${listing.image}`,
+    numberOfRooms: listing.bedrooms,
+    numberOfBathroomsTotal: listing.bathrooms,
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: parseInt(listing.size),
+      unitCode: "FTK",
+    },
+    price: {
+      "@type": "MonetaryAmount",
+      value: listing.price,
+      currency: "USD",
+    },
+    url: `https://www.luxhomes.com/listings/${params.slug}`,
+  };
 
   return (
     <main className="bg-background min-h-screen">
+      {/* Structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <section className="h-96 w-full overflow-hidden">
         <img
           src={listing.image}
@@ -138,7 +211,7 @@ export default function ListingDetailPage() {
         <p className="text-muted text-sm mb-4">{listing.location}</p>
 
         <div className="flex flex-wrap gap-6 mb-6 text-sm">
-          <span className=" font-medium text-primary">
+          <span className="font-medium text-primary">
             ${listing.price.toLocaleString()}
           </span>
           <span className="text-muted">{listing.size}</span>
@@ -174,3 +247,67 @@ export default function ListingDetailPage() {
     </main>
   );
 }
+// export default function ListingDetailPage() {
+//   const { slug } = useParams();
+//   const listing = data[slug as keyof typeof data];
+
+//   if (!listing) return <div className="p-10 text-muted">Listing not found.</div>;
+
+//   return (
+//     <main className="bg-background min-h-screen">
+//       <section className="h-96 w-full overflow-hidden">
+//         <img
+//           src={listing.image}
+//           alt={listing.title}
+//           className="w-full h-full object-cover"
+//         />
+//       </section>
+
+//       <div className="max-w-6xl mx-auto px-6 py-12">
+//         <motion.h1
+//           className="text-3xl font-heading text-base mb-2"
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.5 }}
+//         >
+//           {listing.title}
+//         </motion.h1>
+//         <p className="text-muted text-sm mb-4">{listing.location}</p>
+
+//         <div className="flex flex-wrap gap-6 mb-6 text-sm">
+//           <span className=" font-medium text-primary">
+//             ${listing.price.toLocaleString()}
+//           </span>
+//           <span className="text-muted">{listing.size}</span>
+//           <span className="text-muted">{listing.bedrooms} Bed</span>
+//           <span className="text-muted">{listing.bathrooms} Bath</span>
+//           <span className="text-muted">Type: {listing.type}</span>
+//         </div>
+
+//         <motion.p
+//           className="text-muted mb-8 max-w-3xl"
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           transition={{ delay: 0.3 }}
+//         >
+//           {listing.description}
+//         </motion.p>
+
+//         <h2 className="text-xl font-semibold text-base mb-4">Key Features</h2>
+//         <ul className="list-disc list-inside text-muted mb-8">
+//           {listing.highlights.map((item, i) => (
+//             <li key={i}>{item}</li>
+//           ))}
+//         </ul>
+
+//         <motion.a
+//           href="/contact"
+//           className="inline-block mt-4 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary-hover transition"
+//           whileHover={{ scale: 1.03 }}
+//         >
+//           Schedule a Tour
+//         </motion.a>
+//       </div>
+//     </main>
+//   );
+// }

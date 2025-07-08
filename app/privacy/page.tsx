@@ -1,4 +1,9 @@
-"use client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | LuxHomes",
+  description: "Learn how LuxHomes collects, uses, and protects your personal information in accordance with data privacy standards.",
+};
 
 export default function PrivacyPolicyPage() {
   return (

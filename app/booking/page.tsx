@@ -1,6 +1,13 @@
 "use client";
 
+import { Metadata } from "next";
 import TinyCalWidget from "@/components/TinyCalWidget";
+
+export const metadata: Metadata = {
+  title: "Book a Consultation | LuxHomes",
+  description: "Schedule a private consultation with one of our senior property advisors to explore your real estate goals.",
+};
+
 
 export default function BookPage() {
   return (

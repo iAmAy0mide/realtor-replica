@@ -1,6 +1,11 @@
 "use client";
-
+import { Metadata } from "next";
 import { motion } from "framer-motion";
+
+export const metadata: Metadata = {
+  title: "About Us | LuxHomes",
+  description: "Learn about LuxHomes—our story, mission, and the values that guide our prestige-driven approach to real estate.",
+};
 
 export default function AboutPage() {
   return (
