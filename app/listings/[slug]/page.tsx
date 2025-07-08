@@ -1,8 +1,6 @@
-"use client";
-
-import { notFound, useParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import ListingDetailPageContent from "@/components/Pages/ListingDetailPageContent";
 
 const data = {
     "skyline-penthouse": {
@@ -118,11 +116,13 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const listing = data[params.slug as ListingKey];
+  const awaitedParams = await params;
+  const slug = await awaitedParams.slug as ListingKey;
+  const listing = data[slug];
 
   if (!listing) return notFound();
 
-  const fullUrl = `https://www.luxhomes.com/listings/${params.slug}`;
+  const fullUrl = `https://www.luxhomes.com/listings/${slug}`;
   const title = `${listing.title} | LuxHomes`;
   const description = listing.description;
 
@@ -153,8 +153,10 @@ export async function generateMetadata({
   };
 }
 
-export default function ListingDetailPage({ params }: { params: { slug: string } }) {
-  const listing = data[params.slug as ListingKey];
+export default async function ListingDetailPage({ params }: { params: { slug: string } }) {
+  const awaitedParams = await params;
+  const slug = await awaitedParams.slug as ListingKey;
+  const listing = data[slug];
   if (!listing) return notFound();
 
   const structuredData = {
@@ -180,134 +182,8 @@ export default function ListingDetailPage({ params }: { params: { slug: string }
       value: listing.price,
       currency: "USD",
     },
-    url: `https://www.luxhomes.com/listings/${params.slug}`,
+    url: `https://www.luxhomes.com/listings/${slug}`,
   };
 
-  return (
-    <main className="bg-background min-h-screen">
-      {/* Structured data for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      <section className="h-96 w-full overflow-hidden">
-        <img
-          src={listing.image}
-          alt={listing.title}
-          className="w-full h-full object-cover"
-        />
-      </section>
-
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <motion.h1
-          className="text-3xl font-heading text-base mb-2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {listing.title}
-        </motion.h1>
-        <p className="text-muted text-sm mb-4">{listing.location}</p>
-
-        <div className="flex flex-wrap gap-6 mb-6 text-sm">
-          <span className="font-medium text-primary">
-            ${listing.price.toLocaleString()}
-          </span>
-          <span className="text-muted">{listing.size}</span>
-          <span className="text-muted">{listing.bedrooms} Bed</span>
-          <span className="text-muted">{listing.bathrooms} Bath</span>
-          <span className="text-muted">Type: {listing.type}</span>
-        </div>
-
-        <motion.p
-          className="text-muted mb-8 max-w-3xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          {listing.description}
-        </motion.p>
-
-        <h2 className="text-xl font-semibold text-base mb-4">Key Features</h2>
-        <ul className="list-disc list-inside text-muted mb-8">
-          {listing.highlights.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
-
-        <motion.a
-          href="/contact"
-          className="inline-block mt-4 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary-hover transition"
-          whileHover={{ scale: 1.03 }}
-        >
-          Schedule a Tour
-        </motion.a>
-      </div>
-    </main>
-  );
+  return <ListingDetailPageContent listing={listing} structuredData={structuredData} />; // Assuming you have a component to render the listing details
 }
-// export default function ListingDetailPage() {
-//   const { slug } = useParams();
-//   const listing = data[slug as keyof typeof data];
-
-//   if (!listing) return <div className="p-10 text-muted">Listing not found.</div>;
-
-//   return (
-//     <main className="bg-background min-h-screen">
-//       <section className="h-96 w-full overflow-hidden">
-//         <img
-//           src={listing.image}
-//           alt={listing.title}
-//           className="w-full h-full object-cover"
-//         />
-//       </section>
-
-//       <div className="max-w-6xl mx-auto px-6 py-12">
-//         <motion.h1
-//           className="text-3xl font-heading text-base mb-2"
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.5 }}
-//         >
-//           {listing.title}
-//         </motion.h1>
-//         <p className="text-muted text-sm mb-4">{listing.location}</p>
-
-//         <div className="flex flex-wrap gap-6 mb-6 text-sm">
-//           <span className=" font-medium text-primary">
-//             ${listing.price.toLocaleString()}
-//           </span>
-//           <span className="text-muted">{listing.size}</span>
-//           <span className="text-muted">{listing.bedrooms} Bed</span>
-//           <span className="text-muted">{listing.bathrooms} Bath</span>
-//           <span className="text-muted">Type: {listing.type}</span>
-//         </div>
-
-//         <motion.p
-//           className="text-muted mb-8 max-w-3xl"
-//           initial={{ opacity: 0 }}
-//           animate={{ opacity: 1 }}
-//           transition={{ delay: 0.3 }}
-//         >
-//           {listing.description}
-//         </motion.p>
-
-//         <h2 className="text-xl font-semibold text-base mb-4">Key Features</h2>
-//         <ul className="list-disc list-inside text-muted mb-8">
-//           {listing.highlights.map((item, i) => (
-//             <li key={i}>{item}</li>
-//           ))}
-//         </ul>
-
-//         <motion.a
-//           href="/contact"
-//           className="inline-block mt-4 bg-primary text-white px-6 py-3 rounded-xl hover:bg-primary-hover transition"
-//           whileHover={{ scale: 1.03 }}
-//         >
-//           Schedule a Tour
-//         </motion.a>
-//       </div>
-//     </main>
-//   );
-// }
