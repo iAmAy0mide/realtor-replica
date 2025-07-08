@@ -14,8 +14,8 @@
   --color-background: #F9FAFB;        /* Subtle White Smoke */
   --color-surface: #FFFFFF;           /* Neutral White */
   --color-border: #E5E7EB;            /* Clean Divider */
-  --color-text-base: #111827;         /* Midnight Slate */
-  --color-text-muted: #6B7280;        /* Professional Gray */
+  --color-base: #111827;         /* Midnight Slate */
+  --color-muted: #6B7280;        /* Professional Gray */
 }
 
 

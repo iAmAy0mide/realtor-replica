@@ -1,59 +1,60 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react"; // Optional: use Heroicons or any icon lib
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navLinks = (
-    <>
-      <Link href="/rooms" className="hover:text-base transition">
-        Rooms
-      </Link>
-      <Link href="/about" className="hover:text-base transition">
-        About
-      </Link>
-      <Link href="/contact" className="hover:text-base transition">
-        Contact
-      </Link>
-      <Link
-        href="/booking"
-        className="inline-block bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-hover transition"
-      >
-        Book Now
-      </Link>
-    </>
-  );
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-border">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? "shadow-md bg-surface/90 backdrop-blur" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* LOGO */}
-        <Link href="/" className="text-2xl font-heading text-primary tracking-wide">
-          Serein <span className="text-accent">Stay</span>
+        <Link href="/" className="text-xl font-heading text-primary">
+          LuxHomes<span className="text-accent">.</span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted">
-          {navLinks}
+        <nav className="hidden md:flex items-center gap-6 text-muted text-sm font-medium">
+          <Link href="/listings">Listings</Link>
+          <Link href="/agents">Our Agents</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+          <Link
+            href="/book"
+            className="bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-hover transition"
+          >
+            Book a Tour
+          </Link>
         </nav>
 
-        {/* Mobile Burger Icon */}
-        <button
-          className="md:hidden text-muted"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-        >
+        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-surface border-t border-border text-sm font-medium text-muted px-6 pb-6 space-y-4">
-          <div className="pt-4 flex flex-col space-y-4">{navLinks}</div>
+        <div className="md:hidden px-6 pb-6 bg-surface border-t border-border space-y-4 text-muted text-sm">
+          <Link href="/listings">Listings</Link>
+          <Link href="/agents">Our Agents</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+          <Link
+            href="/book"
+            className="inline-block bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-hover transition"
+          >
+            Book a Tour
+          </Link>
         </div>
       )}
     </header>
