@@ -12,7 +12,7 @@ export default function BookPage() {
         </p>
 
         <div className="bg-surface border border-border rounded-xl shadow-sm p-6">
-          <TinyCalWidget url={""} />
+          <TinyCalWidget url={"https://tinycal.com/luxhomes"} />
         </div>
       </div>
     </main>
