@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Bath, Bed, BedSingle } from "lucide-react";
 
 type Listing = {
     image: string;
@@ -66,11 +67,13 @@ export default function ListingDetailPageContent({
                     </div>
                     <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
                         <span className="flex items-center gap-1">
-                            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M8 17v-1a4 4 0 0 1 8 0v1" /><circle cx="12" cy="7" r="4" /><rect width="20" height="12" x="2" y="10" rx="6" /></svg>
+                            {/* <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M8 17v-1a4 4 0 0 1 8 0v1" /><circle cx="12" cy="7" r="4" /><rect width="20" height="12" x="2" y="10" rx="6" /></svg> */}
+                            <BedSingle size={20} className="text-primary/90" />
                             {listing.bedrooms} Bed
                         </span>
                         <span className="flex items-center gap-1">
-                            <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3" /><rect width="18" height="8" x="3" y="10" rx="4" /></svg>
+                            {/* <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3" /><rect width="18" height="8" x="3" y="10" rx="4" /></svg> */}
+                            <Bath size={20} className="text-primary/90" />
                             {listing.bathrooms} Bath
                         </span>
                         <span className="flex items-center gap-1">
